@@ -2,7 +2,7 @@ const orderSchema = require('./schema/order');
 const orderItemSchema = require('./schema/orderItem');
 const mongoose = require('mongoose');
 
-const connection = mongoose.createConnection('<add-your-connection-string-here>', {
+const connection = mongoose.createConnection('mongodb+srv://Vefthjofar:abcd@cactus-heaven-0rwvg.mongodb.net/cactus-heaven', {
     useNewUrlParser: true
 });
 

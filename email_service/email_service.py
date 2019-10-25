@@ -16,14 +16,14 @@ channel.queue_declare(queue=email_queue_name, durable=True)
 # Bind the queue to a specific exchange with a routing key
 channel.queue_bind(exchange=exchange_name, queue=email_queue_name, routing_key=create_order_routing_key)
 
-def send_simple_message(to, subject, body):
-    return requests.post(
-        "https://api.mailgun.net/v3/<add-your-domain-here>/messages",
-        auth=("api", "<add-your-api-private-key-here>"),
-        data={"from": "Mailgun Sandbox <postmaster@<add-your-domain-here>>",
-              "to": to,
-              "subject": subject,
-              "html": body})
+def send_simple_message():
+	return requests.post(
+		"https://api.mailgun.net/v3/sandbox82f944b134ac43339ca0c000d16032b1.mailgun.org/messages",
+		auth=("api", "b1fc96e9bfc91527a931dbc500cd7f2b-2dfb0afe-0aca5d8a"),
+		data={"from": "Mailgun Sandbox <postmaster@sandbox82f944b134ac43339ca0c000d16032b1.mailgun.org>",
+			"to": "Elvar Örn Antonsson <elvar16@ru.is>",
+			"subject": "Hello Elvar Örn Antonsson",
+			"text": "Congratulations Elvar Örn Antonsson, you just sent an email with Mailgun!  You are truly awesome!"})
 
 def send_order_email(ch, method, properties, data):
     parsed_msg = json.loads(data)
