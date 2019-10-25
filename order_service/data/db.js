@@ -3,7 +3,8 @@ const orderItemSchema = require('./schema/orderItem');
 const mongoose = require('mongoose');
 
 const connection = mongoose.createConnection('mongodb+srv://Vefthjofar:abcd@cactus-heaven-0rwvg.mongodb.net/cactus-heaven', {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 module.exports = {

@@ -36,6 +36,7 @@ namespace logging_service
                                  autoAck: true,
                                  consumer: Consumer);
 
+                Console.ReadLine();
                 Channel.Close();
                 Connection.Close();
             }

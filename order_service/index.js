@@ -1,4 +1,4 @@
-const db = require('data/db')
+const db = require('./data/db')
 const fs = require('fs');
 const amqp = require('amqplib/callback_api');
 
@@ -36,6 +36,10 @@ const configureMessageBroker = channel => {
         channel.bindQueue(queues.orderQueue, exchanges.order, routingKeys.input);
 };
 
+const parseAndCreate = data => {
+    
+}
+
 (async () => {
     const messageBrokerConnection = await createMessageBrokerConnection();
     const channel = await createChannel(messageBrokerConnection);
@@ -45,5 +49,6 @@ const configureMessageBroker = channel => {
 
     channel.consume(order_queue, data => {
         console.log(data.content.toString());
+        const dataJson = JSON.parse(data.content.toString());
     }, { noAck: true });
 })().catch(e => console.error(e));
