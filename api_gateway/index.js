@@ -43,6 +43,14 @@ const configureMessageBroker = channel => {
     const { createOrder } = messageBrokerInfo.routingKeys;
 
     app.use(bodyParser.json());
+    app.post('/api/orders', (req, res) => {
+        const { body } = req;
+        var bodyJson = JSON.stringify(body);
+
+        channel.publish(order, createOrder, new Buffer(bodyJson));
+        console.log(`[x] Sent: ${bodyJson}`);
+        return res.status(200);
+    });
 
     // TODO: Setup route
 
